@@ -404,3 +404,17 @@ if (elements.water && elements.water.reactions) {
     elements.water.reactions.heroin = { elem1: "dirty_water", elem2: null, chance: 0.02 };
     elements.water.reactions.weed = { elem1: "dirty_water", elem2: null, chance: 0.01 };
 }
+
+// Create category tab and buttons for visible elements
+if (typeof createCategoryDiv === "function") {
+    createCategoryDiv("drugs");
+}
+if (typeof createElementButton === "function") {
+    // Only create buttons for non-hidden elements (visible in UI)
+    var drugElements = ["meth","mdma","lsd","cocaine","heroin","crack","weed","hash","dmt","shrooms","ketamine"];
+    for (var i = 0; i < drugElements.length; i++) {
+        if (elements[drugElements[i]] && !elements[drugElements[i]].hidden) {
+            createElementButton(drugElements[i]);
+        }
+    }
+}
